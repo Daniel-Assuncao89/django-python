@@ -1,2 +1,9 @@
 #Ignorar arquivos em pdf
 *.pdf
+
+#Ignorar arquivos pyc
+*.pyc
+
+#Ignorar .idea e env
+.env
+.idea
