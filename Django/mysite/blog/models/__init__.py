@@ -1,0 +1,1 @@
+from .post import Post  #permite a exportação/utilização da classe post em outros locais.
