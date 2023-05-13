@@ -151,7 +151,7 @@ def numeroParaInt(numero: int):
                 if type(resultado) == list:  # Solucao para numero >= doze; por algum motivo dava erro de Type
                     resultado.pop(0)
                 print(resultado)
-            elif int(numerosList[1]) == 0:
+            elif int(numerosList[1]) == 0: # Valida se é um numero apenas q termina em 0: 20, 10, 40...
                 resultado = dezena(numerosList, indice=0)
                 print(resultado[0])
             else:
@@ -166,9 +166,9 @@ def numeroParaInt(numero: int):
                 resultado += dez(numerosList, indice=2)
                 resultado.remove('1')
                 print(resultado[0] + " e " + resultado[1])
-            elif int(numerosList[1]) == 0 and int(numerosList[2]) == 0:
+            elif int(numerosList[1]) == 0 and int(numerosList[2]) == 0:   # Valida se é um numero "redondo" tipo 200,100...
                 print(resultado[0])
-            elif int(numerosList[2]) == 0:
+            elif int(numerosList[2]) == 0:   # Valida se é um numero apenas q termina em 0: 120, 110, 140...
                 resultado = dezena(numerosList, indice=1)
                 print(resultado[0] + " e " + resultado[1])
             else:
