@@ -10,6 +10,6 @@ with open(file="Python_M2_support material02.ipynb", mode='r', encoding='utf8') 
         conteudo.append(linha)
         linha = arquivo.readline()
 
-#print(conteudo)
+# print(conteudo)
 for linha in conteudo:
-    print(linha)
+    print(linha.rstrip())  # Retira os '\n' da linha
