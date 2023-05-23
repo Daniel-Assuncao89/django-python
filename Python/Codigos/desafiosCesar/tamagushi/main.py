@@ -1,7 +1,7 @@
 from tamagushi import Tamagushi
 
 print("*" * 20)
-print("* ", "Bicinho Virtual", "*")
+print("* ", "Bichinho Virtual", "*")
 print("*" * 20)
 nome = input("Qual o nome que você deseja para seu novo pet?")
 
@@ -27,7 +27,7 @@ while 0 < menu <= 5:
     elif menu == 4:
         print("de 0 a 100 a fome está em: ", t1.fome)
     elif menu == 5:
-        print(t1.idade)
+        print(f"{t1.nome} tem {t1.idade} anos")
     menu = int(input("""
 Digite 1 para alimentar
 Digite 2 para verificar o humor do pet

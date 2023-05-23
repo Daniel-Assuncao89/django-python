@@ -1,5 +1,6 @@
 from time import sleep
 
+
 class Pessoa(object):
 
     def __init__(self, nome: str, idade: int, documento: str = None):
@@ -17,4 +18,3 @@ class Pessoa(object):
 
     def __str__(self) -> None:
         return f'{self.nome}, {self.idade} anos e documento numero {self.documento}'
-
