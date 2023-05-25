@@ -8,6 +8,6 @@ print("*" * 20)
 tamagushis = criar_tamagushi()
 
 opcao = 1
-while 0 <= opcao <= 2:
+while 0 <= opcao <= 3:
     opcao, tamagushi = menu_tamagushi(tamagushis)
     opcao = menu_principal(tamagushi)

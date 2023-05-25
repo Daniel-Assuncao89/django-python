@@ -1,3 +1,6 @@
+from time import sleep
+
+
 from tamagushi import Tamagushi
 
 
@@ -34,29 +37,53 @@ def menu_tamagushi(tamagushis):
         opcao = int(input("""
 1 - para criar novo pet
 2 - listar seus pets
-3 - para visualizar o menu principal
+3 - selecionar pet
 """))
         match opcao:
             case 1:
                 t = adicionar_tamaguchi(tamagushis)
                 return opcao, t
             case 2:
-                for elemnt in tamagushis:
-                    print(elemnt.nome)
-            case _:
+                listar_tamagushis(tamagushis)
+            case 3:
+                indice = 1
                 for elemt in tamagushis:
-                    return opcao, elemt
+                    print(f"{elemt.nome} - {indice}")
+                    indice += 1
+                indice = int(input("Qual pet deseja?"))
+                t = pegar_tamaguchi(tamagushis, indice - 1)
+                return opcao, t
+            case _:
+                return opcao
+
 
 def criar_tamagushi():
-    tamagushis = set()
+    tamagushis: list = []
     nome = input("Qual o nome que você deseja para seu novo pet?").lower()
     t = Tamagushi(nome=nome, fome=50, idade=0, saude=50)
-    tamagushis.add(t)
+    tamagushis.append(t)
     return tamagushis
 
 
 def adicionar_tamaguchi(tamagushis):
     nome = input("Qual o nome que você deseja para seu novo pet?").lower()
-    t = Tamagushi(nome=nome, fome=50, idade=0, saude=50)
-    tamagushis.add(t)
+    for elemt in tamagushis:
+        if nome == elemt.nome:
+            print("Este bixinho já existe, indo para o menu principal com ele")
+            indice_tamagushi = tamagushis.index(elemt)
+            t = pegar_tamaguchi(tamagushis, indice_tamagushi)
+            return t
+        else:
+            t = Tamagushi(nome=nome, fome=50, idade=0, saude=50)
+            tamagushis.append(t)
+            return t
+
+
+def pegar_tamaguchi(tamagushis, indice):
+    t = tamagushis[indice]
     return t
+
+
+def listar_tamagushis(tamagushis):
+    for elemt in tamagushis:
+        print(elemt.nome)
