@@ -1,6 +1,5 @@
 import re
 
-
 email = input("What's your email? ").strip()
 
 # if "@" in email and "." in email:
@@ -14,7 +13,7 @@ email = input("What's your email? ").strip()
 #     print("Valid")
 # else:
 #     print("Invalid")
-#------------------------------------------------
+# ------------------------------------------------
 # re.search(pattern, string, flags=0)
 """
 Regular expressions
@@ -28,7 +27,10 @@ Regular expressions
 $ = matches the end of the string or just before the newline at the end of the string
 [] = set of characters that you want to allowed
 [^] = complementing the set
-\d = decimal digit
+A|B = either A or B
+(...) = a group
+(?:...) = non-capturing version
+\d = decimal digit(0-9)
 \D = not a decimal digit
 \s = whitespaces characters
 \S = not a whitespace character
@@ -37,7 +39,7 @@ $ = matches the end of the string or just before the newline at the end of the s
 [a-zA-Z0-9_] = tbm pode ser representado por \w (any word character)
 """
 
-if re.search(r"^\w+@[a-zA-Z0-9_]+\.edu$", email):
+if re.search(r"^\w+@\w+\.(edu|gov|com|gov)$", email, re.IGNORECASE):
     print("Valid")
 else:
     print("Invalid")
