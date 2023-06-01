@@ -12,9 +12,9 @@ def palindrome(word_sanitize, word):
 def main():
     word = input().lower().strip()
     word_normalize = unidecode(word)
-    # print(word_normalize)
-    word_sanitize = re.sub(r"\s*\d*", "", word_normalize)
-    # print(word_sanitize)
+    print(word_normalize)
+    word_sanitize = re.sub(r"[-,!?]*\s*\d*", "", word_normalize)
+    print(word_sanitize)
     palindrome(word_sanitize, word)
 
 
