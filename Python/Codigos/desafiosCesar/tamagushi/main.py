@@ -15,7 +15,8 @@ def service2():
     tamagushis, id = create_tamagushi()
 
     while True:
-        menu_tamagushi(tamagushis, id)
+        t = menu_tamagushi(tamagushis, id)
+        menu_principal(t)
 
 
 def main():

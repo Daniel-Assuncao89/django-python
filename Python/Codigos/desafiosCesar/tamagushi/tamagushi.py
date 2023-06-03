@@ -29,4 +29,5 @@ class Tamagushi:
             self.fome = 50
             print(f"{self.nome} acaba de ficar 1 ano mais velho(a)")
 
-
+    def __str__(self):
+        return f"{self.nome}"
