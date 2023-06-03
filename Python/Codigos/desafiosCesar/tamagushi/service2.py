@@ -59,7 +59,7 @@ def create_tamagushi():
     tamagushis_dict = {}
     id = 1
     nome = input("Insira o nome para seu novo pet.").lower()
-    t = Tamagushi(nome, 50, 0, 50)
+    t = Tamagushi(nome)
     tamagushis_dict[id] = t
     return tamagushis_dict, id
 
