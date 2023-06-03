@@ -60,7 +60,7 @@ def menu_tamagushi(tamagushis):
 def criar_tamagushi():
     tamagushis: list = []
     nome = input("Qual o nome que você deseja para seu novo pet?").lower()
-    t = Tamagushi(nome=nome, fome=50, idade=0, saude=50)
+    t = Tamagushi(nome)
     tamagushis.append(t)
     return tamagushis
 
@@ -74,7 +74,7 @@ def adicionar_tamaguchi(tamagushis):
             t = pegar_tamaguchi(tamagushis, indice_tamagushi)
             return t
         else:
-            t = Tamagushi(nome=nome, fome=50, idade=0, saude=50)
+            t = Tamagushi(nome)
             tamagushis.append(t)
             return t
 

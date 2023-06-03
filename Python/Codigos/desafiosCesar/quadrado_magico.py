@@ -17,11 +17,6 @@ def magic_square(line1, line2, line3):
         sort_numbers()
 
 
-# def repeat_numbers(matriz, numbers):
-#     for num in matriz:
-#         print(num, matriz[num])
-
-
 def sort_numbers():
     numbers = [i for i in range(1, 11)]
     line1 = []

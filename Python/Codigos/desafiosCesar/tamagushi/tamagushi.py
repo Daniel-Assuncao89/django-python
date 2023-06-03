@@ -7,7 +7,7 @@ Atributos: Nome, Fome, Saúde e Idade b. Métodos: Alterar Nome, Fome, Saúde e 
 
 class Tamagushi:
 
-    def __init__(self, nome: str, fome: int, saude: int, idade: int):
+    def __init__(self, nome: str, fome: int = 50, saude: int = 50, idade: int = 0):
         self.nome = nome
         self.fome = fome
         self.saude = saude
