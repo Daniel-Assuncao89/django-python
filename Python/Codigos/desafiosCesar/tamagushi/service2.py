@@ -66,15 +66,18 @@ def create_tamagushi():
 
 def add_tamagushi(tamagushis, id):
     nome = input("Insira o nome para seu novo pet.").lower()
-    key = [tamagushis.get(key) for key, elemt in tamagushis.items() if nome in elemt.nome]
-    if not key:
+    t = [tamagushis.get(key) for key, elemt in tamagushis.items() if nome in elemt.nome]
+    # print(t)
+    if not t:
         id += 1
         t = Tamagushi(nome)
         tamagushis[id] = t
         return tamagushis, id
     print("Bixinho já existe")
-    for e in key:
-        tamagushis[id] = e
+    key = [key for key, elemt in tamagushis.items() if nome in elemt.nome]
+    # print(key)
+    for elemt in t:
+        tamagushis[key[0]] = elemt
     return tamagushis, id
 
 
