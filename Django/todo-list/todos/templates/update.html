@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar</title>
+</head>
+<body>
+
+  {{ task.id }} - {{ task.task }}
+
+    <form action="{% url 'update' task.id %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="task" value="{{ task.task }}">
+        <select name="choices">
+             {% for stat in status %}
+             <option value="{{ stat }}">{{ stat }}</option>
+             {% endfor %}
+        </select>
+
+        <button type="submit">Atualizar</button>
+    </form>
+</body>
+</html>

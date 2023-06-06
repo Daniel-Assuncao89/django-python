@@ -2,12 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>To-do list</title>
 </head>
 <body>
+<h1>To-do</h1>
     <ul>
         {% for task in tasks %}
-            <li>{{ task.status }} - {{ task.task }}</li>
+            <li>{{ task.get_status_display }} - {{ task.task }}
+                <a href="{% url 'editar' task.id %}">Editar</a>
+                <a href="{% url 'delete' task.id %}">Deletar</a>
+            </li>
         {% endfor %}
     </ul>
 
