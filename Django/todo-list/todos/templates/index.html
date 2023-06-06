@@ -8,7 +8,8 @@
 <h1>To-do</h1>
     <ul>
         {% for task in tasks %}
-            <li>{{ task.get_status_display }} - {{ task.task }}
+            <li>{{ task.get_status_display }} - {{ task.task}}
+                <br/>
                 <a href="{% url 'editar' task.id %}">Editar</a>
                 <a href="{% url 'delete' task.id %}">Deletar</a>
             </li>
@@ -17,7 +18,8 @@
 
     <form action="{% url 'salvar' %}" method="POST">
         {% csrf_token %}
-        <input type="text" name="task">
+        <textarea name="task" cols="30" rows="5"></textarea>
+        <br/>
         <button type="submit">Salvar</button>
     </form>
 </body>
