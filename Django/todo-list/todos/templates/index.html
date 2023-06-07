@@ -15,12 +15,27 @@
             </li>
         {% endfor %}
     </ul>
-
-    <form action="{% url 'salvar' %}" method="POST">
+<!--    <form action="{% url 'salvar' %}" method="POST">
         {% csrf_token %}
         <textarea name="task" cols="30" rows="5"></textarea>
         <br/>
         <button type="submit">Salvar</button>
     </form>
+    <br/>
+    <br/>-->
+    <div>-----UTILIZANDO FORMS DO DJANGO-----
+            <form action="{% url 'salvar' %}" method="POST">
+                {% csrf_token %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div> <strong>{{ message }}</strong></div>
+                    {% endfor %}
+                {% endif %}
+                {{ form }}
+                <button type="submit">Salvar</button>
+            </form>
+    </div>
+    -----------------------------------------------
+
 </body>
 </html>
