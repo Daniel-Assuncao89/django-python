@@ -11,14 +11,10 @@
 
     <form action="{% url 'update' task.id %}" method="POST">
         {% csrf_token %}
-        <textarea name="task" cols="30" rows="5">{{ task.task }}</textarea>
-        <br/>
-        <select name="choices">
-             {% for stat in status %}
-             <option value="{{ stat }}">{{ stat }}</option>
-             {% endfor %}
-        </select>
+        {{ form.as_p }}
+        <a href="{% url 'home' %}">Voltar</a>
         <button type="submit">Atualizar</button>
     </form>
+
 </body>
 </html>

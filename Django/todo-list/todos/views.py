@@ -1,46 +1,40 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.http import HttpResponse, HttpResponseRedirect
 from .models import Todo
-from .forms import TaskForm
+from .forms import TaskForm, TaskModelForm
 # Create your views here.
 
 
 def home(request):
     tasks = Todo.objects.all()
-    form = TaskForm()
+    form = TaskModelForm()
     return render(request, "index.html", {"tasks": tasks,
                                           "form": form})
 
 
 def salvar(request):
     if request.method == 'POST':
-        form = TaskForm(request.POST)
-        if form.is_valid():
-            task2 = form.cleaned_data['task']
-            status2 = form.cleaned_data['status']
-            task_create = Todo.objects.create(task=task2, status=status2)
-            task_create.save()
-            messages.success(request, message=f'{task_create} foi criada com sucesso')
-            return redirect(home)
-
-
+        form = TaskModelForm(request.POST)
+        form.save()
+        messages.success(request, message=f'Task foi criada com sucesso')
+        return redirect(home)
 
 
 def editar(request, task_id):
     task = Todo.objects.get(id=task_id)
-    status = Todo.CHOICE_STATUS
+    form = TaskModelForm(instance=task)
     return render(request, "update.html", {"task": task,
-                                           "status": status})
+                                           "form": form})
 
 
 def update(request, task_id):
-    task_html = request.POST.get("task")
-    status_html = request.POST.get("choices")
-    print(status_html)
-    task_obj = Todo.objects.get(id=task_id)
-    task_obj.task = task_html
-    task_obj.status = status_html
-    task_obj.save()
+    if request.method == 'POST':
+        task = Todo.objects.get(id=task_id)
+        form = TaskModelForm(request.POST, instance=task)
+        form.save()
+        messages.success(request, message=f'{task_id} Atualizada com sucesso')
+        redirect(home)
     return redirect(home)
 
 
