@@ -28,3 +28,5 @@ class TaskModelForm(forms.ModelForm):
         # help_texts = {
         #     'task': 'Aqui você digita a sua tarefa'
         # }
+    class Media:
+        css = {'all': ('style.css',)}

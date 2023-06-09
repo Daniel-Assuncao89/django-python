@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>To-do list</title>
+    {{ form.media }}
 </head>
 <body>
 <h1>To-do</h1>
@@ -12,14 +13,14 @@
     {% endfor %}
 {% endif %}
     {% for task in tasks %}
-    <section>
-        <ul>
-            <strong>{{ task.id }}: </strong> {{ task.task}}
-                <br/>
-                <a href="{% url 'editar' task.id %}">Editar</a>
-                <a href="{% url 'delete' task.id %}">Deletar</a>
-        </ul>
-    </section>
+<section>
+    <ul>
+        <strong>{{ task.id }}: </strong> {{ task.task}}
+            <br/>
+            <a href="{% url 'editar' task.id %}">Editar</a>
+            <a href="{% url 'delete' task.id %}">Deletar</a>
+    </ul>
+</section>
     {% endfor %}
 
 <!--    <form action="{% url 'salvar' %}" method="POST">
