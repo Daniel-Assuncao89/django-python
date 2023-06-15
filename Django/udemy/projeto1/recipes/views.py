@@ -10,6 +10,6 @@ def home(request):
 
 
 def recipe(request, id_recipe):
-    return render(request, 'recipes/pages/recipe.html', context={
+    return render(request, 'recipes/pages/recipe-view.html', context={
         'name': 'Daniel Assuncao',
     })
