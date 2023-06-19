@@ -1,0 +1,17 @@
+
+{% include 'recipes/partials/head.html' %}
+<body class="main-container-body">
+<h1>To-do</h1>
+{% if messages %}
+    {% for message in messages %}
+        <h3> <strong>{{ message }}</strong></h3>
+    {% endfor %}
+{% endif %}
+    {% for task in tasks %}
+        {% include 'recipes/partials/section.html' %}
+    {% endfor %}
+
+{% include 'recipes/partials/todo.html' %}
+
+</body>
+</html>

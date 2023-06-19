@@ -9,7 +9,7 @@ from .forms import TaskForm, TaskModelForm
 def home(request):
     tasks = Todo.objects.all()
     form = TaskModelForm()
-    return render(request, "index.html", {"tasks": tasks,
+    return render(request, "recipes/pages/index.html", {"tasks": tasks,
                                           "form": form})
 
 
@@ -24,7 +24,7 @@ def salvar(request):
 def editar(request, task_id):
     task = Todo.objects.get(id=task_id)
     form = TaskModelForm(instance=task)
-    return render(request, "update.html", {"task": task,
+    return render(request, "recipes/pages/update.html", {"task": task,
                                            "form": form})
 
 

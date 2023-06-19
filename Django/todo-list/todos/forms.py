@@ -22,7 +22,7 @@ class TaskModelForm(forms.ModelForm):
             'task': forms.Textarea()
         }
         labels = {
-            'task': 'Tarefa',
+            'task': '',
             'status': 'Prioridade'
         }
         # help_texts = {

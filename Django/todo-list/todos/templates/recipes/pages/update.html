@@ -1,0 +1,17 @@
+{% include 'recipes/partials/head.html' %}
+<section class="update">
+    <p>ID: {{ task.id }}</p>
+    <p>Task: {{ task.task }}</p>
+
+    <form class="forms-django-update" action="{% url 'update' task.id %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="dual-button margin">
+            <a href="{% url 'home' %}"><i class="fas fa-step-backward"></i></a>
+            <button type="submit"><i class="fas fa-edit"></i></button>
+            <a href="{% url 'delete' task.id %}"><i class="fas fa-trash"></i></a>
+        </div>
+
+    </form>
+</section>
+

@@ -1,0 +1,22 @@
+<a href="{% url 'editar' task.id %}">
+    {% if task.get_status_display == "Priority" %}
+    <section class="main-section priority">
+        <ul href="{% url 'editar' task.id %}">
+            <strong>{{ task.id }}: </strong> {{ task }}
+        </ul>
+</section>
+    {% elif task.get_status_display == "Attention"%}
+    <section class="main-section attention">
+        <ul href="{% url 'editar' task.id %}">
+            <strong>{{ task.id }}: </strong> {{ task }}
+        </ul>
+</section>
+{% else %}
+<section class="main-section green">
+    <ul href="{% url 'editar' task.id %}">
+        <strong>{{ task.id }}: </strong> {{ task }}
+    </ul>
+</section>
+    
+    {% endif %}
+</a>

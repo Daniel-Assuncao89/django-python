@@ -1,0 +1,7 @@
+<div class="forms-django">
+    <form action="{% url 'salvar' %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="fas fa-plus forms-button-save margin" type="submit"></button>
+    </form>
+</div>

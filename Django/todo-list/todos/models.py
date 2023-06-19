@@ -6,11 +6,11 @@ from django.db import models
 
 class Todo(models.Model):
     # Criar uma variavel CHOICE_STATUS. Geralmente dicionario ou tupla.
-    CHOICE_STATUS = (
+    CHOICE_STATUS = [
         ('PR', 'Priority'),
         ('AT', 'Attention'),
         ('GR', 'Green')
-    )
+    ]
     task = models.CharField(max_length=250, null=False, blank=False)
     status = models.CharField(max_length=2,
                               choices=CHOICE_STATUS,
