@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from utils.recipes.factory import make_recipe
 from .models import Recipe
@@ -14,12 +15,17 @@ def home(request):
 
 
 def category(request, id_category):
-    category = Recipe.objects.filter(
+    recipes = Recipe.objects.filter(
         category__id=id_category,
         is_published=True,
     ).order_by('-id')
+
+    if not recipes:
+        return HttpResponse(content='Not found', status=404)
+
     return render(request, 'recipes/pages/category.html', context={
-        'recipes': category,
+        'recipes': recipes,
+        'title': f'{recipes.first().category.name} - Category | '
     })
 
 
