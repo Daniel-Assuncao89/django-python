@@ -4,10 +4,16 @@
 
 {% block content %}
 <div class="main-content main-content-list container">
-    {% for recipe in recipes %}
+    {% for recipe in page_obj %}
         {% include 'recipes/partials/recipe.html' %}
     {% endfor %}
 </div>
 {% endblock content %}
+
+{% block pagination %}
+    {% include 'recipes/partials/paginator.html' %}
+{% endblock pagination %}
+
+
 
 
