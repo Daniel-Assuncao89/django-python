@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_list_or_404, get_object_or_404
 from django.core.paginator import Paginator
 from .models import Recipe
+from django.contrib import messages
 
 import os
 
@@ -13,6 +14,8 @@ def home(request):
     ).order_by('-id')
 
     page_obj = make_pagination(request, recipes, PER_PAGES)
+
+    messages.success(request, 'Success')
 
     return render(request, 'recipes/pages/home.html', context={
         'recipes': recipes,
