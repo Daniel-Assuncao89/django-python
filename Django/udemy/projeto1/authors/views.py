@@ -62,7 +62,7 @@ def login_create(request):
         if authenticated_user is not None:
             messages.success(request, 'Logged in')
             login(request, authenticated_user)
-            return redirect(login_url)
+            return redirect('authors:dashboard')
 
         messages.error(request, 'Invalid credentials')
         return redirect(login_url)
