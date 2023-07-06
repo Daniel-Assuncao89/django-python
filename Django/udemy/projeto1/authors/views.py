@@ -77,7 +77,13 @@ def logout_view(request):
         return redirect(reverse('authors:login'))
 
     if request.POST.get('username') != request.user.username:
+        print('Invalid user name', request.POST, request.user)
         return redirect(reverse('authors:login'))
 
     logout(request)
     return redirect(reverse('authors:login'))
+
+
+@login_required(login_url='authors:login', redirect_field_name='next')
+def dashboard(request):
+    return render(request, 'authors/pages/dashboard.html')
