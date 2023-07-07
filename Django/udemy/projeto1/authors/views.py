@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 
-from .forms import RegisterForm, LoginForm
+from .forms import RegisterForm, LoginForm, AuthorRecipeForm
 from recipes.models import Recipe
 
 # Create your views here.
@@ -97,6 +97,29 @@ def dashboard(request):
 
     return render(request, 'authors/pages/dashboard.html', {
         'recipes': page_obj
+    })
+
+
+@login_required(login_url='authors:login', redirect_field_name='next')
+def dashboard_recipe_edit(request, recipe_id):
+    recipe = Recipe.objects.filter(
+        pk=recipe_id,
+        is_published=False,
+        author=request.user,
+    ).first()
+
+    if not recipe:
+        raise Http404(
+            'Invalid recipe'
+        )
+
+    form = AuthorRecipeForm(
+        request.POST or None,
+        instance=recipe
+    )
+
+    return render(request, 'authors/pages/dashboard_recipe.html',  {
+        'form': form,
     })
 
 

@@ -13,7 +13,7 @@
             <ul>
                 {% for recipe in recipes %}
                     <li>
-                        <a href="#"> {{ recipe.title }} </a>
+                        <a href="{% url 'authors:dashboard_recipe_edit' recipe.id %}"> {{ recipe.title }} </a>
                     </li>
                 {% empty %}
                     <li>
@@ -27,7 +27,6 @@
     </div>
 
     {% include 'recipes/partials/messages.html' %}
-    {% include 'recipes/partials/form.html' %}
     
 {% endblock content %}
 {% block pagination %}

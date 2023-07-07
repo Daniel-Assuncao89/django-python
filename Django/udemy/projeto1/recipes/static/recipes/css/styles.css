@@ -69,6 +69,15 @@ h6 {
     font-family: var(--font-headings);
 }
 
+img {
+    max-width: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-primary)
+}
+
 .container {
     max-width: 144rem;
     margin: 0 auto;
@@ -367,7 +376,9 @@ h6 {
     color: var(--color-error-dark);
   }
   
-  .form-content input {
+  .form-content input,
+  .form-content textarea,
+  .form-content select {
     width: 100%;
     padding: 1rem;
     border-radius: 0.4rem;
@@ -409,4 +420,8 @@ h6 {
   .authors-dashboard-container ul {
     list-style-type: none;
     margin: 1rem 0;
+  }
+
+  .dashboard-anchor:hover {
+    filter: brightness(1.2);
   }

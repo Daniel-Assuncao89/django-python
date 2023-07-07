@@ -15,6 +15,9 @@
                     {% endif %}
                         {{ field.errors }}
                 </div>
+                {% if field.name == 'cover' and field.value.url%}
+                    <img src="{{ field.value.url }}" alt="">
+                {% endif %}
             {% endfor %}               
         </div>
 
