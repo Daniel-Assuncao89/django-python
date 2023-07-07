@@ -6,9 +6,31 @@
     <div class="main-content center container">
         <h2>Dashboard ({{ user }})</h2>
         {% include 'authors/partials/login_message.html' %}
+        
+        <div class="authors-dashboard-container">
+            <h3>Your Recipes</h3>
+
+            <ul>
+                {% for recipe in recipes %}
+                    <li>
+                        <a href="#"> {{ recipe.title }} </a>
+                    </li>
+                {% empty %}
+                    <li>
+                        <p>You do not have unpublished recipes.</p>
+                    </li>
+                {% endfor %}
+            </ul>
+
+        </div>
+
     </div>
 
     {% include 'recipes/partials/messages.html' %}
     {% include 'recipes/partials/form.html' %}
     
 {% endblock content %}
+{% block pagination %}
+    {% include 'recipes/partials/paginator.html' %}
+{% endblock pagination %}
+

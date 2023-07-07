@@ -1,17 +1,17 @@
 <div class="pagination center">
     <span class="step-links">
-        {% if page_obj.has_previous %}
+        {% if recipes.has_previous %}
             <a href="?page=1"><i class="fas fa-backward"></i></a>
-            <a href="?page={{ page_obj.previous_page_number }}"><i class="fas fa-arrow-left"></i></a>
+            <a href="?page={{ recipes.previous_page_number }}"><i class="fas fa-arrow-left"></i></a>
         {% endif %}
 
         <span class="current">
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            Page {{ recipes.number }} of {{ recipes.paginator.num_pages }}.
         </span>
 
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}"><i class="fas fa-arrow-right"></i></a>
-            <a href="?page={{ page_obj.paginator.num_pages }}"><i class="fas fa-forward"></i></a>
+        {% if recipes.has_next %}
+            <a href="?page={{ recipes.next_page_number }}"><i class="fas fa-arrow-right"></i></a>
+            <a href="?page={{ recipes.paginator.num_pages }}"><i class="fas fa-forward"></i></a>
         {% endif %}
     </span>
 </div>

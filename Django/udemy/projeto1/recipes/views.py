@@ -1,7 +1,6 @@
 from django.shortcuts import render, get_list_or_404, get_object_or_404
 from django.core.paginator import Paginator
 from .models import Recipe
-from django.contrib import messages
 
 import os
 
@@ -16,8 +15,8 @@ def home(request):
     page_obj = make_pagination(request, recipes, PER_PAGES)
 
     return render(request, 'recipes/pages/home.html', context={
-        'recipes': recipes,
-        'page_obj': page_obj,
+        # 'recipes': recipes,
+        'recipes': page_obj,
     })
 
 
@@ -39,8 +38,8 @@ def category(request, id_category):
     page_obj = make_pagination(request, recipes, PER_PAGES)
 
     return render(request, 'recipes/pages/category.html', context={
-        'recipes': recipes,
-        'page_obj': page_obj,
+        # 'recipes': recipes,
+        'recipes': page_obj,
         'title': f'{recipes[0].category.name} - Category | '
     })
 

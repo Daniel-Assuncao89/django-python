@@ -4,8 +4,10 @@ from django.contrib import messages
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 
 from .forms import RegisterForm, LoginForm
+from recipes.models import Recipe
 
 # Create your views here.
 
@@ -86,4 +88,21 @@ def logout_view(request):
 
 @login_required(login_url='authors:login', redirect_field_name='next')
 def dashboard(request):
-    return render(request, 'authors/pages/dashboard.html')
+    recipes = Recipe.objects.filter(
+        is_published=False,
+        author=request.user
+    )
+
+    page_obj = make_pagination(request, recipes, 3)
+
+    return render(request, 'authors/pages/dashboard.html', {
+        'recipes': page_obj
+    })
+
+
+def make_pagination(request, queryset, per_page):
+    paginator = Paginator(queryset, per_page)
+    page_number = request.GET.get('page', 1)
+    print(request.GET)
+    page_obj = paginator.get_page(page_number)
+    return page_obj
