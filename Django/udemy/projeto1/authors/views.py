@@ -109,14 +109,28 @@ def dashboard_recipe_edit(request, recipe_id):
     ).first()
 
     if not recipe:
-        raise Http404(
-            'Invalid recipe'
-        )
+        raise Http404('Invalid recipe')
 
     form = AuthorRecipeForm(
-        request.POST or None,
+        data=request.POST or None,
+        files=request.FILES or None,
         instance=recipe
     )
+
+    if form.is_valid():
+        recipe = form.save(commit=False)
+
+        recipe.author = request.user
+        recipe.preparation_steps_is_html = False
+        recipe.is_published = False
+
+        recipe.save()
+
+        messages.success(request, 'Recipe updated')
+        return redirect(reverse('authors:dashboard_recipe_edit',
+                                args=(recipe_id,)
+                                )
+                        )
 
     return render(request, 'authors/pages/dashboard_recipe.html',  {
         'form': form,
