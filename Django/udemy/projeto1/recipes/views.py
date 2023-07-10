@@ -44,9 +44,9 @@ def category(request, id_category):
     })
 
 
-def recipe(request, id_recipe):
+def recipe(request, slug,):
     recipe = get_object_or_404(
-        Recipe, pk=id_recipe, is_published=True,
+        Recipe, slug=slug, is_published=True,
     )
     return render(request, 'recipes/pages/recipe-view.html', context={
         'recipe': recipe,
