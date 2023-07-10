@@ -23,7 +23,6 @@ def home(request):
 def make_pagination(request, queryset, per_page):
     paginator = Paginator(queryset, per_page)
     page_number = request.GET.get('page', 1)
-    print(request.GET)
     page_obj = paginator.get_page(page_number)
     return page_obj
 
