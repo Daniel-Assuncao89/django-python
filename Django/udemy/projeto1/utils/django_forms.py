@@ -1,5 +1,6 @@
 import re
 from django.core.exceptions import ValidationError
+from unidecode import unidecode
 
 
 def add_placeholder(field, placeholder_val):
@@ -17,3 +18,10 @@ def strong_password(password):
         ),
             code='Invalid'
         )
+
+
+def slug_field(slug):
+    slug_normalize = unidecode(slug).lower()
+    slug_sanitize = re.sub(r'\s+', r'-', slug_normalize)
+
+    return slug_sanitize

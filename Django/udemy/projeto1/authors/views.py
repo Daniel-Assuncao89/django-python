@@ -8,6 +8,7 @@ from django.core.paginator import Paginator
 
 from .forms import RegisterForm, LoginForm, AuthorRecipeForm
 from recipes.models import Recipe
+from utils.django_forms import slug_field
 
 # Create your views here.
 
@@ -91,7 +92,7 @@ def dashboard(request):
     recipes = Recipe.objects.filter(
         is_published=False,
         author=request.user
-    )
+    ).order_by('-id')
 
     page_obj = make_pagination(request, recipes, 3)
 
@@ -123,6 +124,7 @@ def dashboard_recipe_edit(request, recipe_id):
         recipe.author = request.user
         recipe.preparation_steps_is_html = False
         recipe.is_published = False
+        recipe.slug = slug_field(recipe.title)
 
         recipe.save()
 
@@ -134,6 +136,34 @@ def dashboard_recipe_edit(request, recipe_id):
 
     return render(request, 'authors/pages/dashboard_recipe.html',  {
         'form': form,
+    })
+
+
+@login_required(login_url='authors:login', redirect_field_name='next')
+def dashboard_recipe_create(request):
+
+    form = AuthorRecipeForm(
+        data=request.POST or None,
+        files=request.FILES or None,
+    )
+
+    if form.is_valid():
+        recipe: Recipe = form.save(commit=False)
+
+        recipe.author = request.user
+        recipe.preparation_steps_is_html = False
+        recipe.is_published = False
+        recipe.slug = slug_field(recipe.title)
+
+        recipe.save()
+
+        messages.success(request, 'Recipe Created')
+        return redirect(reverse('authors:dashboard')
+                        )
+
+    return render(request, 'authors/pages/dashboard_recipe_create.html',  {
+        'form': form,
+        'form_action': reverse('authors:dashboard_recipe_create')
     })
 
 
