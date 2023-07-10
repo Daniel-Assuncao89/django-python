@@ -425,3 +425,12 @@ a {
   .dashboard-anchor:hover {
     filter: brightness(1.2);
   }
+
+  .inline-form{
+    display: inline;
+
+  }
+
+  .trash-button{
+    color: var(--color-gray-9);
+  }

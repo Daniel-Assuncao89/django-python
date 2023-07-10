@@ -12,6 +12,9 @@ urlpatterns = [
     path('dashboard/', views.dashboard, name='dashboard'),
     path('dashboard/recipe_create', views.dashboard_recipe_create,
          name='dashboard_recipe_create'),
+    path('dashboard/recipe_delete/', views.dashboard_recipe_delete,
+         name='dashboard_recipe_delete'),
     path('dashboard/recipe_edit/<int:recipe_id>', views.dashboard_recipe_edit,
          name='dashboard_recipe_edit'),
+
 ]

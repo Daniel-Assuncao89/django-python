@@ -167,6 +167,28 @@ def dashboard_recipe_create(request):
     })
 
 
+@login_required(login_url='authors:login', redirect_field_name='next')
+def dashboard_recipe_delete(request):
+    if not request.POST:
+        raise Http404()
+
+    POST = request.POST
+    recipe_id = POST.get('id')
+
+    recipe = Recipe.objects.filter(
+        pk=recipe_id,
+        is_published=False,
+        author=request.user,
+    ).first()
+
+    if not recipe:
+        raise Http404('Invalid recipe')
+
+    recipe.delete()
+    messages.success(request, 'Recipe deleted')
+    return redirect('authors:dashboard')
+
+
 def make_pagination(request, queryset, per_page):
     paginator = Paginator(queryset, per_page)
     page_number = request.GET.get('page', 1)
